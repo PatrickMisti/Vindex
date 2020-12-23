@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Vindex.iml" filepath="$PROJECT_DIR$/Vindex.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/Vindex_android.iml" filepath="$PROJECT_DIR$/android/Vindex_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vindex.iml" filepath="$PROJECT_DIR$/vindex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/vindex_android.iml" filepath="$PROJECT_DIR$/android/vindex_android.iml" />
     </modules>
   </component>
 </project>

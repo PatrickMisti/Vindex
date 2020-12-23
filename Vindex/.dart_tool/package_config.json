@@ -134,13 +134,13 @@
       "languageVersion": "2.10"
     },
     {
-      "name": "Vindex",
+      "name": "vindex",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-23T14:37:19.270396Z",
+  "generated": "2020-12-23T14:43:36.561244Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }
