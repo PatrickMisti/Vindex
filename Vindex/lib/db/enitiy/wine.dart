@@ -1,41 +1,40 @@
 import 'dart:typed_data';
-
 import 'package:floor/floor.dart';
 
 @Entity(tableName: 'wine')
 class Wine {
   @PrimaryKey(autoGenerate: true)
-  final int _id;
-  String _name;
-  int _vintage;
-  Uint8List _picture;
-  String _location;
+  final int id;
+  String name;
+  int vintage;
+  Uint8List picture;
+  String location;
 
-  Wine(this._id, this._name, this._vintage, this._picture, this._location);
+  Wine(this.id, this.name, this.vintage, this.picture, this.location);
 
-  Wine.constructor(this._id, {setName, setVintage, setPicture, setLocation});
+  Wine.inputs(this.id, {setName, setVintage, setPicture, setLocation});
 
-  String get getLocation => _location;
+  String get getLocation => location;
 
   set setLocation(String value) {
-    _location = value;
+    location = value;
   }
 
-  Uint8List get getPicture => _picture;
+  Uint8List get getPicture => picture;
 
   set setPicture(Uint8List value) {
-    _picture = value;
+    picture = value;
   }
 
-  int get getVintage => _vintage;
+  int get getVintage => vintage;
 
   set setVintage(int value) {
-    _vintage = value;
+    vintage = value;
   }
 
-  String get getName => _name;
+  String get getName => name;
 
   set setName(String value) {
-    _name = value;
+    name = value;
   }
 }

@@ -6,47 +6,47 @@ import 'package:vindex/db/enitiy/wine.dart';
     foreignKeys: [
       ForeignKey(
           childColumns: ['wine_id'],
-          parentColumns: ['_id'],
+          parentColumns: ['id'],
           entity: Wine
       )
     ])
 class Review {
   @PrimaryKey(autoGenerate: true)
-  final int _id;
-  final DateTime _ratingDate;
-  int _rating;
-  String _stringRating;
-  String _wineForFood;
+  final int id;
+  final String ratingDate;     //Iso standard
+  int rating;
+  String stringRating;
+  String wineForFood;
 
   @ColumnInfo(name: 'wine_id',nullable: false)
-  final int _wineId;
+  final int wineId;
 
-  Review(this._id, this._ratingDate, this._rating, this._stringRating,
-      this._wineForFood, this._wineId);
+  Review(this.id, this.ratingDate, this.rating, this.stringRating,
+      this.wineForFood, this.wineId);
 
-  Review.constructor(this._id, this._ratingDate, this._wineId, {setRating, setStringRating,
-      setWineForFood});
+  //Review.inputs(this._id, DateTime time, this._wineId, {setRating, setStringRating,
+    //  setWineForFood}): this._ratingDate = time.toIso8601String();
 
-  String get getWineForFood => _wineForFood;
+  String get getWineForFood => wineForFood;
 
   set setWineForFood(String value) {
-    _wineForFood = value;
+    wineForFood = value;
   }
 
-  String get getStringRating => _stringRating;
+  String get getStringRating => stringRating;
 
   set setStringRating(String value) {
-    _stringRating = value;
+    stringRating = value;
   }
 
-  int get getRating => _rating;
+  int get getRating => rating;
 
   set setRating(int value) {
-    _rating = value;
+    rating = value;
   }
 
-  DateTime get getRatingDate => _ratingDate;
+  DateTime get getRatingDate => DateTime.parse(ratingDate);
 
-  int get getId => _id;
+  int get getId => id;
 
 }

@@ -22,6 +22,7 @@ environment:
 
 dependencies:
   floor: ^0.18.0
+
   flutter:
     sdk: flutter
 
@@ -31,6 +32,10 @@ dependencies:
   cupertino_icons: ^1.0.0
 
 dev_dependencies:
+  test:
+  floor_generator: ^0.18.0
+  build_runner: ^1.10.3
+
   flutter_test:
     sdk: flutter
 

@@ -20,10 +20,10 @@ abstract class WineDao {
   Future<int> updateWine(Wine wine);
 
   @delete
-  Future<int> deleteWine(Wine wine);
+  Future<void> deleteWine(Wine wine);
 
-  @Query('SELECT * FROM Wine WHERE id = :id')
-  Future<int> deleteWineById(int id);
+  @Query('DELETE FROM Wine WHERE id = :id')
+  Future<void> deleteWineById(int id);
 
 }
 
@@ -45,9 +45,9 @@ abstract class ReviewDao {
   Future<int> updateReview(Review review);
 
   @delete
-  Future<int> deleteReview(Review review);
+  Future<void> deleteReview(Review review);
 
   @Query('SELECT * FROM Review WHERE id = :id')
-  Future<int> deleteReviewById(int id);
+  Future<void> deleteReviewById(int id);
 
 }
