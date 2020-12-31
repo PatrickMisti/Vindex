@@ -38,21 +38,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08714e62-9ee2-4207-98b7-88cc2feaf534" name="Default Changelist" comment="db extension">
-      <change afterPath="$PROJECT_DIR$/flutter" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/db/database/appDatabase.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/db/database/appdatabase.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/unit_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/database/DatabaseExtension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/database/DatabaseExtension.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/database/dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/database/dao.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/database/winedatabase.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/enitiy/review.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/enitiy/review.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/enitiy/wine.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/enitiy/wine.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
