@@ -1,0 +1,4 @@
+enum SettingEnum {
+  delete,
+  manager
+}

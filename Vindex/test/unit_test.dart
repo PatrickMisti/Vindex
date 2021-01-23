@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:test/test.dart';
 import 'package:vindex/db/database/DatabaseExtension.dart';
 import 'package:vindex/db/enitiy/wine.dart';
@@ -45,7 +43,7 @@ void main() {
 
       Future.delayed(Duration(seconds: 1));
       Wine actual = await DatabaseExtension.findById<Wine>(3);
-      List item = await DatabaseExtension.getAll<Wine>();
+      // List item = await DatabaseExtension.getAll<Wine>();
       Future.delayed(Duration(seconds: 1));
       print("Actual ${actual.name}\nexpected ${wine.name}");
       expect(actual.name, wine.name);
