@@ -11,12 +11,10 @@ class Overview extends StatefulWidget {
 }
 
 class _Overview extends State<Overview> {
-  int _selectedItemBottom = 0;
+  CupertinoTabController _controller = new CupertinoTabController();
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedItemBottom = index;
-    });
+    _controller.index = index;
   }
 
   List<Widget> _widgetOptions = <Widget>[
@@ -27,32 +25,33 @@ class _Overview extends State<Overview> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorPalette.yellow,
-      body: _widgetOptions.elementAt(_selectedItemBottom),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.only(right: 20, left: 20, bottom: 20),
-        child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(45)),
-          child: CupertinoTabBar(
-            backgroundColor: ColorPalette.red,
-            items: [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  activeIcon: Icon(Icons.home_outlined)),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.add_circle),
-                  activeIcon: Icon(Icons.add_circle_outline)),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  activeIcon: Icon(Icons.settings_sharp))
-            ],
-            currentIndex: _selectedItemBottom,
-            onTap: _onItemTapped,
-            activeColor: ColorPalette.purple,
-            inactiveColor: ColorPalette.orange,
-          ),
-        ),
+    return CupertinoTabScaffold(
+      controller: _controller,
+      tabBuilder: (context, index) {
+        // _controller.index = index;
+        return _widgetOptions.elementAt(index);
+      },
+      tabBar: CupertinoTabBar(
+        backgroundColor: ColorPalette.red.withOpacity(0.7),
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              activeIcon: Icon(Icons.home_outlined,size: 33,)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle),
+              activeIcon: Icon(Icons.add,size: 33,)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              activeIcon: Icon(Icons.settings_applications_outlined,size: 33,))
+        ],
+        currentIndex: _controller.index,
+        onTap: (index) {
+          setState(() {
+            _controller.index = index;
+          });
+        },
+        activeColor: Colors.blueGrey,
+        inactiveColor: ColorPalette.red,
       ),
     );
   }

@@ -3,12 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vindex/navigationBarItem/setting/settingConverter.dart';
 import 'package:vindex/utilities/settingEnum.dart';
 
-class SettingScreen extends StatefulWidget {
-  @override
-  _SettingScreen createState() => _SettingScreen();
-}
-
-class _SettingScreen extends State<SettingScreen> {
+class SettingScreen extends StatelessWidget {
   final List<SettingConverter> settingList = [
     SettingConverter(Icons.delete_forever, "Reset All", SettingEnum.delete),
     SettingConverter(Icons.find_replace, "User", SettingEnum.manager)

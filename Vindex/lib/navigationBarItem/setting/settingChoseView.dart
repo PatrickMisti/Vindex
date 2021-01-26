@@ -36,7 +36,6 @@ class _SettingChoseView extends State<SettingChoseView>{
 
     return Material(
       child: CupertinoPageScaffold(
-          backgroundColor: ColorPalette.yellow,
           child: view
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vindex/navigationBarItem/setting/settingChoseView.dart';
+import 'package:vindex/utilities/colorpalettes.dart';
 import 'package:vindex/utilities/settingEnum.dart';
 
 class SettingConverter extends StatefulWidget {
@@ -34,7 +35,7 @@ class _SettingConverter extends State<SettingConverter> {
         onTap: () => this.showTransition(),
         child: Row(
           children: [
-            Icon(widget._icon, size: 25),
+            Icon(widget._icon,color: ColorPalette.red, size: 25),
             SizedBox(width: 30,),
             Text(widget._text, style: TextStyle(fontSize: 25)),
             Spacer(flex: 2),
