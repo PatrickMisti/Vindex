@@ -38,15 +38,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08714e62-9ee2-4207-98b7-88cc2feaf534" name="Default Changelist" comment="db extension">
-      <change afterPath="$PROJECT_DIR$/lib/utilities/ios_search_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/navigationBarItem/homeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/navigationBarItem/homeScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/navigationBarItem/setting/settingChoseView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/navigationBarItem/setting/settingChoseView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/navigationBarItem/setting/settingConverter.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/navigationBarItem/setting/settingConverter.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/navigationBarItem/settingScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/navigationBarItem/settingScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/overview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/overview.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities/colorpalettes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/colorpalettes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/db/database/appdatabase.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/database/appdatabase.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +84,7 @@
       <recent name="C:\Home\Github\Vindex\vindex\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Flutter.main.dart">
+  <component name="RunManager" selected="Flutter Test.add to db and get">
     <configuration name="add to db and get" type="FlutterTestConfigType" factoryName="Flutter Test" temporary="true" nameIsGenerated="true">
       <option name="testName" value="add to db and get" />
       <option name="testFile" value="$PROJECT_DIR$/test/unit_test.dart" />
@@ -113,10 +112,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Flutter Test.add to db and get" />
         <item itemvalue="Flutter Test.delete to db" />
         <item itemvalue="Flutter Test.db tests" />
         <item itemvalue="Flutter Test.update to db" />
-        <item itemvalue="Flutter Test.add to db and get" />
         <item itemvalue="Flutter Test.test" />
       </list>
     </recent_temporary>
@@ -178,11 +177,11 @@
     </state>
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1610051561131" />
     <state x="718" y="162" key="#com.intellij.ide.util.MemberChooser/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1611432400213" />
-    <state x="-311" y="327" width="1688" height="806" key="AVDManager" timestamp="1611666439938">
+    <state x="-311" y="327" width="1688" height="806" key="AVDManager" timestamp="1611770111085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1609954500369" />
-    <state x="-311" y="327" width="1688" height="806" key="AVDManager/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1611666439938" />
+    <state x="-311" y="327" width="1688" height="806" key="AVDManager/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1611770111085" />
     <state x="395" y="0" key="CommitChangelistDialog2" timestamp="1609426749682">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
