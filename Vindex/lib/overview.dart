@@ -13,10 +13,6 @@ class Overview extends StatefulWidget {
 class _Overview extends State<Overview> {
   CupertinoTabController _controller = new CupertinoTabController();
 
-  void _onItemTapped(int index) {
-    _controller.index = index;
-  }
-
   List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     AddScreen(),
@@ -28,7 +24,6 @@ class _Overview extends State<Overview> {
     return CupertinoTabScaffold(
       controller: _controller,
       tabBuilder: (context, index) {
-        // _controller.index = index;
         return _widgetOptions.elementAt(index);
       },
       tabBar: CupertinoTabBar(

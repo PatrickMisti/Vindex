@@ -85,9 +85,9 @@ class _HomeScreen extends State<HomeScreen>
                         _animationController.reverse();
                     },
                     child: Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.blueAccent),
                       margin: EdgeInsets.all(5),
                       child: Text("Hallo"),
-                      color: Colors.blueAccent,
                     ),
                   );
                 }),

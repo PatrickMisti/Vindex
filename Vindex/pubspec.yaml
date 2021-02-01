@@ -22,6 +22,8 @@ environment:
 
 dependencies:
   floor: ^0.18.0
+  image_picker:
+
 
   flutter:
     sdk: flutter

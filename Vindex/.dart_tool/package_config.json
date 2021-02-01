@@ -206,6 +206,12 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/Home/Utils/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -240,6 +246,18 @@
       "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-3.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.3"
+    },
+    {
+      "name": "image_picker",
+      "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.7+22",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "image_picker_platform_interface",
+      "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_platform_interface-1.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.5"
     },
     {
       "name": "intl",
@@ -324,6 +342,12 @@
       "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.10.0-nullsafety.2",
       "packageUri": "lib/",
       "languageVersion": "2.10"
+    },
+    {
+      "name": "plugin_platform_interface",
+      "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "pool",
@@ -542,7 +566,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-01-27T17:51:09.316118Z",
+  "generated": "2021-02-01T18:46:21.523626Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

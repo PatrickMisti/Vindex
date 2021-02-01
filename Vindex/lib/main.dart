@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:vindex/db/database/DatabaseExtension.dart';
+import 'package:vindex/navigationBarItem/wineDetail.dart';
 import 'package:vindex/overview.dart';
 
-void main() => runApp(Home());
+void main() async {
+  await DatabaseExtension.init();
+  runApp(Home());
+}
 
 class Home extends StatelessWidget {
   @override
@@ -12,6 +17,14 @@ class Home extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Overview(),
+      },
+      onGenerateRoute: (setting){
+        if (setting.name == '/wine')
+          return CupertinoPageRoute(
+            fullscreenDialog: false,
+            builder: (context) => WineDetail(setting.arguments)
+          );
+        return null;
       },
     );
   }

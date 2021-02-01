@@ -6,8 +6,8 @@ class DatabaseExtension {
   static AppDatabase _db;
 
   static init() async {
-    _db = await $FloorAppDatabase.inMemoryDatabaseBuilder().build();
-    //_db = await $FloorAppDatabase.databaseBuilder('vindex').build();
+    //_db = await $FloorAppDatabase.inMemoryDatabaseBuilder().build();
+    _db = await $FloorAppDatabase.databaseBuilder('vindex').build();
   }
 
   static Future<List> getAll<T>() async {

@@ -9,7 +9,7 @@ class Wine {
   int vintage;
   Uint8List picture;
   String location;
-
+  
   Wine(this.id, this.name, this.vintage, this.picture, this.location);
 
   Wine.inputs(this.id, {setName, setVintage, setPicture, setLocation});
