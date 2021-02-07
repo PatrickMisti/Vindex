@@ -50,4 +50,6 @@ abstract class ReviewDao {
   @Query('DELETE FROM Review WHERE id = :id')
   Future<void> deleteReviewById(int id);
 
+  @Query('Select * FROM Review WHERE wine_id = :id')
+  Future<List<Review>> findReviewByWineId(int id);
 }

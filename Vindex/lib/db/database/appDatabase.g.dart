@@ -329,4 +329,17 @@ class _$ReviewDao extends ReviewDao {
   Future<void> deleteReview(Review review) async {
     await _reviewDeletionAdapter.delete(review);
   }
+
+  @override
+  Future<List<Review>> findReviewByWineId(int id) {
+    return _queryAdapter.queryList('SELECT * FROM Review WHERE wine_id = ?',
+        arguments: <dynamic>[id],
+        mapper: (Map<String, dynamic> row) => Review(
+            row['id'] as int,
+            row['ratingDate'] as String,
+            row['rating'] as int,
+            row['stringRating'] as String,
+            row['wineForFood'] as String,
+            row['wine_id'] as int));
+  }
 }

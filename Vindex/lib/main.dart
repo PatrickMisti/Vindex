@@ -5,6 +5,7 @@ import 'package:vindex/navigationBarItem/wineDetail.dart';
 import 'package:vindex/overview.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await DatabaseExtension.init();
   runApp(Home());
 }

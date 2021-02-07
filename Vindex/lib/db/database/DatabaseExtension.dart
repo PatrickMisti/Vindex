@@ -7,7 +7,7 @@ class DatabaseExtension {
 
   static init() async {
     //_db = await $FloorAppDatabase.inMemoryDatabaseBuilder().build();
-    _db = await $FloorAppDatabase.databaseBuilder('vindex').build();
+    _db = await $FloorAppDatabase.databaseBuilder('vindex.db').build();
   }
 
   static Future<List> getAll<T>() async {
@@ -67,5 +67,9 @@ class DatabaseExtension {
       await _db.wineDao.deleteWineById(entityId);
     if (T == Review)
       await _db.reviewDao.deleteReviewById(entityId);
+  }
+
+  static Future<List<Review>> getReviewsFromWineId(int entityId) async{
+    return await _db.reviewDao.findReviewByWineId(entityId);
   }
 }

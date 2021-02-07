@@ -48,12 +48,16 @@ class _AddScreen extends State<AddScreen> {
   }
 
   submitButton() async {
-    final wine = new Wine(null, this._name.text, int.parse(this._year.text), this._file.readAsBytesSync(), this._location.text);
+    final wine = new Wine(null, this._name.text, int.parse(this._year.text), this._file.readAsBytesSync() ?? null, this._location.text);
     await DatabaseExtension.insert<Wine>(wine);
-    this._file = null;
-    this._location.text = null;
-    this._year.text = null;
-    this._name.text = null;
+
+    setState(() {
+      this._file = null;
+      this._location.text = '';
+      this._year.text = '';
+      this._name.text = '';
+    });
+
     Navigator.pushNamed(context, '/wine',arguments: wine);
   }
 

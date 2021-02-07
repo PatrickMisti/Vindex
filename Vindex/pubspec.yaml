@@ -23,7 +23,7 @@ environment:
 dependencies:
   floor: ^0.18.0
   image_picker:
-
+  sliding_up_panel: ^1.0.2
 
   flutter:
     sdk: flutter
@@ -36,7 +36,7 @@ dependencies:
 dev_dependencies:
   test:
   floor_generator: ^0.18.0
-  build_runner: ^1.10.3
+  build_runner: ^1.11.1
 
   flutter_test:
     sdk: flutter
