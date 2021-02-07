@@ -1,0 +1,4 @@
+enum WineSelectedIcon {
+  checked,
+  unchecked
+}

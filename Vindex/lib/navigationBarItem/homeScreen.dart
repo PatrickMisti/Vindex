@@ -6,6 +6,10 @@ import 'package:vindex/db/database/DatabaseExtension.dart';
 import 'package:vindex/db/enitiy/wine.dart';
 import 'package:vindex/utilities/colorpalettes.dart';
 import 'package:vindex/utilities/ios_search_bar.dart';
+import 'package:vindex/utilities/navBarItemName.dart';
+import 'package:vindex/utilities/navBarItemNameExtension.dart';
+import 'package:vindex/utilities/wineSelectedIcon.dart';
+import 'package:vindex/utilities/wineSelectedIconExtension.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -51,14 +55,9 @@ class _HomeScreen extends State<HomeScreen>
 
   bool editing = false;
   Color editingColor = ColorPalette.black;
-  var navBarName = [
-    {1, "Edit"},
-    {2, "Cancel"},
-    {3, "Delete"}
-  ];
+  String navBarSelection = NavBarItemName.Edit.getEnumString();
 
   CupertinoSliverNavigationBar appBarSliver() {
-    var navBarSelection = navBarName[0].toList();
     return CupertinoSliverNavigationBar(
       backgroundColor: ColorPalette.red.withOpacity(0.5),
       largeTitle: Container(
@@ -81,13 +80,16 @@ class _HomeScreen extends State<HomeScreen>
         onTap: () {
           setState(() {
             editing = !editing;
-            editingColor = editingColor == ColorPalette.black
+            editingColor = editing
                 ? Colors.blue
                 : ColorPalette.black;
+            navBarSelection = editing
+                ? NavBarItemName.Cancel.getEnumString()
+                : NavBarItemName.Edit.getEnumString();
           });
         },
         child: Container(
-          child: Text(navBarSelection[1].toString(),
+          child: Text(navBarSelection,
               style: TextStyle(
                   color: editingColor,
                   decoration: TextDecoration.underline)),
@@ -97,14 +99,14 @@ class _HomeScreen extends State<HomeScreen>
   }
 
   FutureBuilder sliverBody() {
-    bool isSelected = false;
-    var isSelectedIcon = Icons.check_circle_outline;
     return FutureBuilder(
       future: DatabaseExtension.getAll<Wine>(),
       builder: (context, snapshot) {
         return SliverGrid(
             delegate: SliverChildListDelegate(snapshot.hasData
                 ? List<Widget>.generate(snapshot.data.length, (idx) {
+              bool isSelected = false;
+              var isSelectedIcon = WineSelectedIcon.unchecked;
               return Stack(
                 children: [
                   Positioned(
@@ -122,24 +124,22 @@ class _HomeScreen extends State<HomeScreen>
                       ),
                     ),
                   ),
-
-                  Positioned(
-                    top: 20,
-                    left: 0,
-                    child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isSelected = !isSelected;
-                            isSelectedIcon = isSelected == false
-                                ? Icons.check_circle_outline
-                                : Icons.check_circle;
-                          });
-                        },
-                        child: Icon(
-                          isSelectedIcon,
-                          color: ColorPalette.black,
-                        )),
-                  )
+                  if (editing)
+                    Positioned(
+                      top: 20,
+                      left: 0,
+                      child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              //todo delte remove when nothing is selected maybe with a map on a bool who is selected solution
+                              isSelected = !isSelected;
+                              isSelectedIcon = isSelected ? WineSelectedIcon.checked : WineSelectedIcon.unchecked;
+                              navBarSelection = NavBarItemName.Delete.getEnumString();
+                            });
+                          },
+                          child: Container(
+                            child: isSelectedIcon.getIcon(),)),
+                    )
                 ],
               );
             })
