@@ -29,15 +29,15 @@ class _SettingConverter extends State<SettingConverter> {
   Widget build(BuildContext context) {
     Size sizes = MediaQuery.of(context).size;
     return Container(
-      height: sizes.height * 0.1,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      height: sizes.height * 0.05,
+      padding: EdgeInsets.symmetric(horizontal: 20,),
       child: GestureDetector(
         onTap: () => this.showTransition(),
         child: Row(
           children: [
             Icon(widget._icon,color: ColorPalette.red, size: 25),
             SizedBox(width: 30,),
-            Text(widget._text, style: TextStyle(fontSize: 25)),
+            Text(widget._text, style: TextStyle(fontSize: 20)),
             Spacer(flex: 2),
             Icon(Icons.arrow_forward_ios, size: 25)
           ],

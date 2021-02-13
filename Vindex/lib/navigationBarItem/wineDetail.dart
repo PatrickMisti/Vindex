@@ -7,6 +7,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:vindex/db/database/DatabaseExtension.dart';
 import 'package:vindex/db/enitiy/wine.dart';
 import 'package:vindex/navigationBarItem/detail/reviewScreen.dart';
+import 'package:vindex/navigationBarItem/homeScreen.dart';
 import 'package:vindex/utilities/colorpalettes.dart';
 
 class WineDetail extends StatefulWidget {
@@ -19,7 +20,6 @@ class WineDetail extends StatefulWidget {
 }
 
 class _WineDetail extends State<WineDetail> {
-  ReviewScreen bottomShowReview;
   File _file;
   final picker = ImagePicker();
   final _name = TextEditingController();
@@ -33,7 +33,6 @@ class _WineDetail extends State<WineDetail> {
   @override
   void initState() {
     super.initState();
-    bottomShowReview = new ReviewScreen(widget._wine.id);
     _name.text = widget._wine.getName;
     _location.text = widget._wine.getLocation;
     _year.text = widget._wine.getVintage.toString();
@@ -247,7 +246,10 @@ class _WineDetail extends State<WineDetail> {
         middle: Text("Wine Detail"),
         backgroundColor: ColorPalette.red.withOpacity(0.5),
         transitionBetweenRoutes: true,
-        leading: Icon(Icons.arrow_back_ios, color: ColorPalette.black,),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios, color: ColorPalette.black,),
+        ),
       ),
         child: Stack(
           children: [
@@ -257,7 +259,7 @@ class _WineDetail extends State<WineDetail> {
                   child: formAbove()
               ),
             ),
-            bottomShowReview.build(MediaQuery.of(context).size)
+            ReviewScreen(widget._wine.id)
           ],
         )
     );

@@ -24,6 +24,7 @@ dependencies:
   floor: ^0.18.0
   image_picker:
   sliding_up_panel: ^1.0.2
+  icon_shadow: ^1.0.1
 
   flutter:
     sdk: flutter

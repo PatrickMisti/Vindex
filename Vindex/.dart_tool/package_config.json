@@ -248,6 +248,12 @@
       "languageVersion": "2.3"
     },
     {
+      "name": "icon_shadow",
+      "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/icon_shadow-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "image_picker",
       "rootUri": "file:///C:/Home/Utils/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.7+22",
       "packageUri": "lib/",
@@ -572,7 +578,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-02-07T17:16:34.484268Z",
+  "generated": "2021-02-08T18:46:57.290874Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }
