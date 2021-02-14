@@ -77,6 +77,174 @@ class _ReviewScreen extends State<ReviewScreen> with SingleTickerProviderStateMi
     return SizedBox(width: 0,);
   }
 
+  Widget _headerSlidingUpPanel(snapshot, size) {
+    return Container(
+      height: 110,
+      width: size.width,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              GestureDetector(
+                onTap: (){
+                  setState(() {
+                    isEditing = !isEditing;
+                  });
+                },
+                child: Container(
+                  width: size.width * 0.333,
+                  child: Center(
+                      child: Text(
+                        "Edit",
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      )),
+                ),
+              ),
+              Container(
+                  width: size.width * 0.333,
+                  child: Center(
+                      child: IconShadowWidget(Icon(
+                        Icons.remove,
+                        size: 50,
+                        color: Colors.grey,
+                      )))),
+              GestureDetector(
+                onTap: () {
+                  addReview();
+                },
+                child: Container(
+                  width: size.width * 0.333,
+                  child: Center(
+                      child: Text(
+                        "Add",
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      )),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 14),
+          Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: Text("Count Review: ${snapshot.data.length}"),
+                  )),
+              Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: Text("Durchschnitt.: ${calcReviewAverage(snapshot.data)} / 100"),
+                  ))
+            ],
+          ),
+          SizedBox(height: 7),
+          Divider(
+            color: ColorPalette.black,
+            thickness: 2,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _panelSlidingUpPanel(snapshot, size) {
+    return Container(
+      margin: EdgeInsets.only(top: 100),
+      child: snapshot.hasData
+          ? ListView.builder(
+        itemCount: snapshot.data.length,
+        reverse: true,
+        itemBuilder: (context, index) {
+          if (snapshot.data.length == 0 || snapshot.data == null) {
+            return Center(
+              child: Text("No Data"),
+            );
+          } else {
+            Review review = snapshot.data[index];
+            DateTime datetime = DateTime.parse(review.getRatingDate.toString());
+
+            return Container(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: Text(
+                                "${datetime.day}-${datetime.month}-${datetime.year}"),
+                          )),
+                      Spacer(flex: 1),
+                      Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: isEditing
+                                ? Row(children: [
+                              Expanded(
+                                child: CupertinoTextField(
+                                  maxLength: 3,
+                                  controller: TextEditingController(text: review.getRating.toString()),
+                                  keyboardType: TextInputType.number,
+                                  onSubmitted: (value) {
+                                    review.setRating = int.parse(value);
+                                    DatabaseExtension.update(review);
+                                  },
+                                ),
+                              ),
+                              Expanded(child: Text("/100"))
+                            ],)
+                                : Text(
+                                "${review.getRating.toString()} / 100"),
+                          ))
+                    ],
+                  ),
+
+
+                  Container(
+                      height: 100,
+                      width: size.width,
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Row(
+                        children: <Widget>[
+                          iconReviewShow(review),
+                          Spacer(flex: 1,),
+                          Expanded(
+                            flex: 20,
+                            child: CupertinoTextField(
+                              maxLines: 6,
+                              enabled: isEditing,
+                              controller: TextEditingController(text: review.getStringRating),
+                              onChanged: (value) {
+                                review.setStringRating = value;
+                                DatabaseExtension.update(review);
+                              },
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: ColorPalette.black,width: 1),
+                                  borderRadius: BorderRadius.all(Radius.circular(15))
+                              ),
+                              keyboardType: TextInputType.text,
+                            ),
+                          ),
+
+                        ],
+                      )
+                  ),
+
+                  Divider(color: ColorPalette.black,)
+                ],
+
+              ),
+            );
+          }
+
+        },
+      )
+          : Center(child: CupertinoActivityIndicator()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -93,170 +261,9 @@ class _ReviewScreen extends State<ReviewScreen> with SingleTickerProviderStateMi
           backdropTapClosesPanel: true,
           minHeight: _minHeightIsShow,
           maxHeight: size.height * _maxHeightIsShow,
-          header: Container(
-            height: 110,
-            width: size.width,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          isEditing = !isEditing;
-                        });
-                      },
-                      child: Container(
-                        width: size.width * 0.333,
-                        child: Center(
-                            child: Text(
-                          "Edit",
-                          style: TextStyle(decoration: TextDecoration.underline),
-                        )),
-                      ),
-                    ),
-                    Container(
-                        width: size.width * 0.333,
-                        child: Center(
-                            child: IconShadowWidget(Icon(
-                          Icons.remove,
-                          size: 50,
-                          color: Colors.grey,
-                        )))),
-                    GestureDetector(
-                      onTap: () {
-                        addReview();
-                      },
-                      child: Container(
-                        width: size.width * 0.333,
-                        child: Center(
-                            child: Text(
-                          "Add",
-                          style: TextStyle(decoration: TextDecoration.underline),
-                        )),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 14),
-                Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: Center(
-                          child: Text("Count Review: ${snapshot.data.length}"),
-                        )),
-                    Expanded(
-                        flex: 1,
-                        child: Center(
-                          child: Text("Durchschnitt.: ${calcReviewAverage(snapshot.data)} / 100"),
-                        ))
-                  ],
-                ),
-                SizedBox(height: 7),
-                Divider(
-                  color: ColorPalette.black,
-                  thickness: 2,
-                )
-              ],
-            ),
-          ),
+          header: _headerSlidingUpPanel(snapshot, size),
           defaultPanelState: panelState,
-
-          panel: Container(
-            margin: EdgeInsets.only(top: 100),
-            child: snapshot.hasData
-                ? ListView.builder(
-                    itemCount: snapshot.data.length,
-                    reverse: true,
-                    itemBuilder: (context, index) {
-                      if (snapshot.data.length == 0 || snapshot.data == null) {
-                        return Center(
-                          child: Text("No Data"),
-                        );
-                      } else {
-                        Review review = snapshot.data[index];
-                        DateTime datetime = DateTime.parse(review.getRatingDate.toString());
-
-                        return Container(
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                      flex: 1,
-                                      child: Center(
-                                        child: Text(
-                                            "${datetime.day}-${datetime.month}-${datetime.year}"),
-                                      )),
-                                  Spacer(flex: 1),
-                                  Expanded(
-                                      flex: 1,
-                                      child: Center(
-                                        child: isEditing
-                                            ? Row(children: [
-                                          Expanded(
-                                            child: CupertinoTextField(
-                                              maxLength: 3,
-                                              controller: TextEditingController(text: review.getRating.toString()),
-                                              keyboardType: TextInputType.number,
-                                              onSubmitted: (value) {
-                                                review.setRating = int.parse(value);
-                                                DatabaseExtension.update(review);
-                                              },
-                                            ),
-                                          ),
-                                          Expanded(child: Text("/100"))
-                                        ],)
-                                            : Text(
-                                            "${review.getRating.toString()} / 100"),
-                                      ))
-                                ],
-                              ),
-
-
-                              Container(
-                                height: 100,
-                                width: size.width,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Row(
-                                  children: <Widget>[
-                                    iconReviewShow(review),
-                                    Spacer(flex: 1,),
-                                    Expanded(
-                                      flex: 20,
-                                      child: CupertinoTextField(
-                                        maxLines: 6,
-                                        enabled: isEditing,
-                                        controller: TextEditingController(text: review.getStringRating),
-                                        onChanged: (value) {
-                                          review.setStringRating = value;
-                                          DatabaseExtension.update(review);
-                                        },
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: ColorPalette.black,width: 1),
-                                            borderRadius: BorderRadius.all(Radius.circular(15))
-                                        ),
-                                        keyboardType: TextInputType.text,
-                                      ),
-                                    ),
-
-                                  ],
-                                )
-                              ),
-
-                              Divider(color: ColorPalette.black,)
-                            ],
-
-                          ),
-                        );
-                      }
-
-                    },
-                  )
-                : Center(child: CupertinoActivityIndicator()),
-          ),
+          panel: _panelSlidingUpPanel(snapshot, size),
         );
       },
     );

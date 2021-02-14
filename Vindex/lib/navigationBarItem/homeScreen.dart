@@ -22,6 +22,8 @@ class _HomeScreen extends State<HomeScreen>
   FocusNode _searchFocusNode = new FocusNode();
   Animation _animation;
   AnimationController _animationController;
+  List<int> _deleteIds = new List<int>();
+
 
   @override
   void initState() {
@@ -56,6 +58,37 @@ class _HomeScreen extends State<HomeScreen>
   bool editing = false;
   Color editingColor = ColorPalette.black;
   String navBarSelection = NavBarItemName.Edit.getEnumString();
+
+  Widget _iconShowForDelete(int index) {
+    bool isSelected = false;
+    var isSelectedIcon = WineSelectedIcon.unchecked;
+    if (editing)
+      return Positioned(
+        top: 0,
+        left: 0,
+        child: GestureDetector(
+            onTap: () {
+              if(_deleteIds.contains(index)){
+                _deleteIds.removeAt(index);
+                isSelectedIcon = WineSelectedIcon.unchecked;
+              }
+              else {
+                _deleteIds.add(index);
+                isSelectedIcon = WineSelectedIcon.checked;
+              }
+              setState(() {
+                //todo delte remove when nothing is selected maybe with a map on a bool who is selected solution
+                /*isSelected = !isSelected;
+                isSelectedIcon = isSelected ? WineSelectedIcon.checked : WineSelectedIcon.unchecked;*/
+                navBarSelection = "(${_deleteIds.length})${NavBarItemName.Delete.getEnumString()}";
+              });
+            },
+            child: Container(
+              child: isSelected ? WineSelectedIcon.checked.getIcon() : WineSelectedIcon.unchecked.getIcon()
+            )),
+      );
+    return SizedBox();
+  }
 
   CupertinoSliverNavigationBar appBarSliver() {
     return CupertinoSliverNavigationBar(
@@ -105,8 +138,7 @@ class _HomeScreen extends State<HomeScreen>
         return SliverGrid(
             delegate: SliverChildListDelegate(snapshot.hasData
                 ? List<Widget>.generate(snapshot.data.length, (idx) {
-              bool isSelected = false;
-              var isSelectedIcon = WineSelectedIcon.unchecked;
+
               return Stack(
                 children: [
                   Positioned(
@@ -116,30 +148,26 @@ class _HomeScreen extends State<HomeScreen>
                     bottom: 10,
                     child: GestureDetector(
                       onTap: () {
-                        print("wine push from homescreen");
                         Navigator.pushNamed(context, '/wine',arguments: snapshot.data[idx]);
                       },
                       child: Container(
-                        child: Image.memory(snapshot.data[idx].getPicture),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: ColorPalette.black),
+                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15)),
+                        ),
+                        child: Column(
+                          children: [
+                            Image.memory(snapshot.data[idx].getPicture),
+                            Container(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(snapshot.data[idx].getName),
+                            )
+                          ],
+                        )
                       ),
                     ),
                   ),
-                  if (editing)
-                    Positioned(
-                      top: 20,
-                      left: 0,
-                      child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              //todo delte remove when nothing is selected maybe with a map on a bool who is selected solution
-                              isSelected = !isSelected;
-                              isSelectedIcon = isSelected ? WineSelectedIcon.checked : WineSelectedIcon.unchecked;
-                              navBarSelection = NavBarItemName.Delete.getEnumString();
-                            });
-                          },
-                          child: Container(
-                            child: isSelectedIcon.getIcon(),)),
-                    )
+                  _iconShowForDelete(idx)
                 ],
               );
             })
@@ -148,7 +176,7 @@ class _HomeScreen extends State<HomeScreen>
                 maxCrossAxisExtent: 150,
                 mainAxisSpacing: 1,
                 crossAxisSpacing: 1,
-                childAspectRatio: 0.6)
+                childAspectRatio: 0.64)
         );
       }
     );
