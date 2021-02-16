@@ -156,7 +156,7 @@ class _$WineDao extends WineDao {
 
   @override
   Future<List<Wine>> findAllWineFuture() async {
-    return _queryAdapter.queryList('SELECT * FROM Wine',
+    return await _queryAdapter.queryList('SELECT * FROM Wine',
         mapper: (Map<String, dynamic> row) => Wine(
             row['id'] as int,
             row['name'] as String,
@@ -180,7 +180,7 @@ class _$WineDao extends WineDao {
 
   @override
   Future<Wine> findWineById(int id) async {
-    return _queryAdapter.query('SELECT * FROM Wine WHERE id = ?',
+    return await _queryAdapter.query('SELECT * FROM Wine WHERE id = ?',
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => Wine(
             row['id'] as int,
@@ -197,14 +197,14 @@ class _$WineDao extends WineDao {
   }
 
   @override
-  Future<int> insertWine(Wine wine) {
-    return _wineInsertionAdapter.insertAndReturnId(
+  Future<int> insertWine(Wine wine) async{
+    return await _wineInsertionAdapter.insertAndReturnId(
         wine, OnConflictStrategy.abort);
   }
 
   @override
-  Future<int> updateWine(Wine wine) {
-    return _wineUpdateAdapter.updateAndReturnChangedRows(
+  Future<int> updateWine(Wine wine) async {
+    return await _wineUpdateAdapter.updateAndReturnChangedRows(
         wine, OnConflictStrategy.abort);
   }
 
@@ -270,7 +270,7 @@ class _$ReviewDao extends ReviewDao {
 
   @override
   Future<List<Review>> findAllReviewFuture() async {
-    return _queryAdapter.queryList('SELECT * FROM Review',
+    return await _queryAdapter.queryList('SELECT * FROM Review',
         mapper: (Map<String, dynamic> row) => Review(
             row['id'] as int,
             row['ratingDate'] as String,
@@ -296,7 +296,7 @@ class _$ReviewDao extends ReviewDao {
 
   @override
   Future<Review> findReviewById(int id) async {
-    return _queryAdapter.query('SELECT * FROM Review WHERE id = ?',
+    return await _queryAdapter.query('SELECT * FROM Review WHERE id = ?',
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => Review(
             row['id'] as int,
@@ -314,14 +314,14 @@ class _$ReviewDao extends ReviewDao {
   }
 
   @override
-  Future<int> insertReview(Review review) {
-    return _reviewInsertionAdapter.insertAndReturnId(
+  Future<int> insertReview(Review review) async {
+    return await _reviewInsertionAdapter.insertAndReturnId(
         review, OnConflictStrategy.abort);
   }
 
   @override
-  Future<int> updateReview(Review review) {
-    return _reviewUpdateAdapter.updateAndReturnChangedRows(
+  Future<int> updateReview(Review review) async{
+    return await _reviewUpdateAdapter.updateAndReturnChangedRows(
         review, OnConflictStrategy.abort);
   }
 
@@ -331,8 +331,8 @@ class _$ReviewDao extends ReviewDao {
   }
 
   @override
-  Future<List<Review>> findReviewByWineId(int id) {
-    return _queryAdapter.queryList('SELECT * FROM Review WHERE wine_id = ?',
+  Future<List<Review>> findReviewByWineId(int id) async{
+    return await _queryAdapter.queryList('SELECT * FROM Review WHERE wine_id = ?',
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => Review(
             row['id'] as int,

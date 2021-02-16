@@ -39,26 +39,26 @@ class DatabaseExtension {
 
   static Future<int> insert<T> (T entity) async {
     if (entity is Wine)
-      return _db.wineDao.insertWine(entity);
+      return await _db.wineDao.insertWine(entity);
     if (entity is Review)
-      return _db.reviewDao.insertReview(entity);
+      return await _db.reviewDao.insertReview(entity);
     else
       return -1;
   }
 
   static Future<int> update<T> (T entity) async {
     if (entity is Wine)
-      return _db.wineDao.updateWine(entity);
+      return await _db.wineDao.updateWine(entity);
     if (entity is Review)
-      return _db.reviewDao.updateReview(entity);
+      return await _db.reviewDao.updateReview(entity);
     else
       return -1;
   }
 
   static Future<void> delete<T> (T entity) async {
     if (entity is Wine) {
-      _db.reviewDao.deleteReviewByWineId(entity.id);
-      _db.wineDao.deleteWine(entity);
+      await _db.reviewDao.deleteReviewByWineId(entity.id);
+      await _db.wineDao.deleteWine(entity);
     }
     if (entity is Review)
       _db.reviewDao.deleteReview(entity);
