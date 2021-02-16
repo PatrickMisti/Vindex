@@ -56,15 +56,20 @@ class DatabaseExtension {
   }
 
   static Future<void> delete<T> (T entity) async {
-    if (entity is Wine)
+    if (entity is Wine) {
+      _db.reviewDao.deleteReviewByWineId(entity.id);
       _db.wineDao.deleteWine(entity);
+    }
     if (entity is Review)
       _db.reviewDao.deleteReview(entity);
   }
 
   static Future<void> deleteById<T> (int entityId) async {
-    if (T == Wine)
+    if (T == Wine){
+      await _db.reviewDao.deleteReviewByWineId(entityId);
       await _db.wineDao.deleteWineById(entityId);
+    }
+
     if (T == Review)
       await _db.reviewDao.deleteReviewById(entityId);
   }

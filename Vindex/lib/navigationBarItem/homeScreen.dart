@@ -59,32 +59,25 @@ class _HomeScreen extends State<HomeScreen>
   Color editingColor = ColorPalette.black;
   String navBarSelection = NavBarItemName.Edit.getEnumString();
 
-  Widget _iconShowForDelete(int index) {
-    bool isSelected = false;
-    var isSelectedIcon = WineSelectedIcon.unchecked;
+  Widget _iconShowForDelete(Wine wine) {
     if (editing)
       return Positioned(
         top: 0,
         left: 0,
         child: GestureDetector(
             onTap: () {
-              if(_deleteIds.contains(index)){
-                _deleteIds.removeAt(index);
-                isSelectedIcon = WineSelectedIcon.unchecked;
-              }
-              else {
-                _deleteIds.add(index);
-                isSelectedIcon = WineSelectedIcon.checked;
-              }
               setState(() {
-                //todo delte remove when nothing is selected maybe with a map on a bool who is selected solution
-                /*isSelected = !isSelected;
-                isSelectedIcon = isSelected ? WineSelectedIcon.checked : WineSelectedIcon.unchecked;*/
-                navBarSelection = "(${_deleteIds.length})${NavBarItemName.Delete.getEnumString()}";
+                if(_deleteIds.contains(wine.id)){
+                  _deleteIds.remove(wine.id);
+                }
+                else {
+                  _deleteIds.add(wine.id);
+                }
+                navBarSelection = _deleteIds.length > 0 ? "(${_deleteIds.length})${NavBarItemName.Delete.getEnumString()}" : "${NavBarItemName.Cancel.getEnumString()}";
               });
             },
             child: Container(
-              child: isSelected ? WineSelectedIcon.checked.getIcon() : WineSelectedIcon.unchecked.getIcon()
+              child: _deleteIds.contains(wine.id) ? WineSelectedIcon.checked.getIcon() : WineSelectedIcon.unchecked.getIcon()
             )),
       );
     return SizedBox();
@@ -111,14 +104,20 @@ class _HomeScreen extends State<HomeScreen>
       ),
       trailing: GestureDetector(
         onTap: () {
+          editing = !editing;
+          editingColor = editing
+              ? Colors.blue
+              : ColorPalette.black;
+          navBarSelection = editing
+              ? NavBarItemName.Cancel.getEnumString()
+              : NavBarItemName.Edit.getEnumString();
           setState(() {
-            editing = !editing;
-            editingColor = editing
-                ? Colors.blue
-                : ColorPalette.black;
-            navBarSelection = editing
-                ? NavBarItemName.Cancel.getEnumString()
-                : NavBarItemName.Edit.getEnumString();
+            if(_deleteIds.isNotEmpty)
+              _deleteIds.forEach((element) async{
+                Wine deleteOne = await DatabaseExtension.findById<Wine>(element);
+                await DatabaseExtension.delete(deleteOne);
+              });
+            _deleteIds = new List<int>();
           });
         },
         child: Container(
@@ -167,7 +166,7 @@ class _HomeScreen extends State<HomeScreen>
                       ),
                     ),
                   ),
-                  _iconShowForDelete(idx)
+                  _iconShowForDelete(snapshot.data[idx])
                 ],
               );
             })

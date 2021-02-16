@@ -342,4 +342,10 @@ class _$ReviewDao extends ReviewDao {
             row['wineForFood'] as String,
             row['wine_id'] as int));
   }
+
+  @override
+  Future<void> deleteReviewByWineId(int id) async{
+    await _queryAdapter.queryNoReturn('DELETE FROM Review WHERE wine_id = ?',
+        arguments: <dynamic>[id]);
+  }
 }
